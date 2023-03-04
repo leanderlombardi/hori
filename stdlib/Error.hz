@@ -1,0 +1,18 @@
+import exit
+
+class Error
+{
+  struct
+  {
+    CODE,
+    MSG,
+  }
+  
+  voidf throwerr(code: int, msg: string)
+  {
+    println("Error: %", msg)
+    return exit(code)
+  }
+  
+  voidf geterrbody() { return (string) struct }
+}
