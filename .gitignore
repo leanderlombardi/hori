@@ -50,3 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# CMake
+.src/cmake-buld-debug
+
+# LLVM
+.src/llvm-project
