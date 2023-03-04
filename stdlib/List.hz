@@ -1,0 +1,39 @@
+class AddToList : List.struct.VALUE
+{
+  struct
+  {
+    VALUE
+  }[]
+}
+
+class List
+{
+  struct
+  {
+    TYPE,
+    VALUE[],
+    LENGTH,
+  }
+  
+  struct.init()
+  
+  CallableHorizonLexer lexer(
+    """
+    List : 'List' '<' TYPE '>' IDENT '(' ')'
+      OPT:: 
+         Add : '.' 'add' '(' VALUE ')'
+         Rem : '.' 'remove '(' INTVAL=IDX ')'
+         Set : '.' 'setidx' '(' INTVAL=IDX, VALUE ')'
+    """
+  )
+  
+  struct.TYPE = lexer.get("List").get("TYPE")
+ 
+  AddToList.struct.init()
+ 
+  for (lexer.get("List").get(OPT).get("Add"))
+  {
+    AddToList.struct.VALUE = lexer.get("List").get(OPT).get("Add").get("VALUE")
+    struct.VALUE[] += AddToList.struct.VALUE[*]
+  }
+}
