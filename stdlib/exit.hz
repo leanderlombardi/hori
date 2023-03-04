@@ -1,0 +1,8 @@
+voidf exit(code)
+{
+  return __c__(
+    """
+    exit(§code§);
+    """
+  )
+}
