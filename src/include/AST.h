@@ -9,6 +9,7 @@ typedef struct AST_STRUCT {
     AST_FUNCTION_CALL,
     AST_VARIABLE,
     AST_STRING,
+    AST_COMPOUND,
   } type;
 
   /* AST_VARIABLE_DEFINITION */
@@ -25,6 +26,10 @@ typedef struct AST_STRUCT {
 
   /* AST_STRING */
   char *string_value;
+
+  /* AST_COMPOUND */
+  struct AST_STRUCT **compound_value;
+  size_t compound_size;
 } AST_T;
 
 AST_T *init_ast(int type);
