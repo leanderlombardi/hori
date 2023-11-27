@@ -31,5 +31,9 @@ AST_T *parser_parse_variable(parser_T *parser);
 
 AST_T *parser_parse_string(parser_T *parser);
 
+AST_T *parser_parse_id(parser_T *parser);
+
+AST_T *parser_parse_variable_definition(parser_T *parser);
+
 #endif // PARSER_H
 
