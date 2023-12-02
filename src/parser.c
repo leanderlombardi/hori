@@ -2,6 +2,7 @@
 #include "include/AST.h"
 #include "include/lexer.h"
 #include "include/error.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -49,13 +50,25 @@ AST_T *parser_parse_statements(parser_T *parser) {
   return compound;
 }
 
-AST_T *parser_parse_expr(parser_T *parser) {}
+AST_T *parser_parse_expr(parser_T *parser) {
+  switch (parser->cur_token->type) {
+    case TOKEN_STRING:
+      return parser_parse_string(parser);
+  }
+}
 
 AST_T *parser_parse_term(parser_T *parser) {}
 
 AST_T *parser_parse_factor(parser_T *parser) {}
 
-AST_T *parser_parse_string(parser_T *parser) {}
+AST_T *parser_parse_string(parser_T *parser) {
+  AST_T *ast_string = init_ast(AST_STRING);
+  ast_string->string_value = parser->cur_token->value;
+
+  parser_eat(parser, TOKEN_STRING);
+
+  return ast_string;
+}
 
 AST_T *parser_parse_variable(parser_T *parser) {
   char *token_value = parser->cur_token->value;
